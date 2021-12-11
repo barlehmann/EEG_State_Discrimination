@@ -32,10 +32,18 @@ mamba create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pand
 # if mamba is not installed:  conda create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas conda-forge::jupyterlab
 ```
 
+# Download this code
+```
+git clone https://github.com/barlehmann/EEG_State_Discrimination
+```
+
 # Additional Data for training
 10 sets of EEG - 2.5 mins of eyes open rest and 2.5 mins of eyes closed
 Can be used as a baseline for state based analysis datasets provided in this brainhack
-```git clone https://github.com/mastaneht/SPIS-Resting-State-Dataset```
+```
+cd EEG_State_Discrimination
+git clone https://github.com/mastaneht/SPIS-Resting-State-Dataset extra_data
+```
 
 # Running 
 ```

@@ -38,5 +38,7 @@ Can be used as a baseline for state based analysis datasets provided in this bra
 ```git clone https://github.com/mastaneht/SPIS-Resting-State-Dataset```
 
 # Running 
+```
 conda activate eeg_state
 jupyter lab code/complete_project_code.ipynb
+```

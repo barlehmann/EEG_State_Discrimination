@@ -25,7 +25,12 @@ Directions for use of basic package pre-brainHack project:
 -	Then use the sample commented code below in the machine learning block of code below or write your own code to use these classes/methods related to machine learning
 
 
+# Install Requirements
 
+```
+mamba create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas
+# if mamba is not installed:  conda create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas
+```
 
 # Additional Data for training
 10 sets of EEG - 2.5 mins of eyes open rest and 2.5 mins of eyes closed

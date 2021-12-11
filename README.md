@@ -25,3 +25,9 @@ Directions for use of basic package pre-brainHack project:
 -	Then use the sample commented code below in the machine learning block of code below or write your own code to use these classes/methods related to machine learning
 
 
+
+
+# Additional Data for training
+10 sets of EEG - 2.5 mins of eyes open rest and 2.5 mins of eyes closed
+Can be used as a baseline for state based analysis datasets provided in this brainhack
+```git clone https://github.com/mastaneht/SPIS-Resting-State-Dataset```

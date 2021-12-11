@@ -32,8 +32,8 @@ def convert_to_fif(fname):
     mat = scipy.io.loadmat(fname)['dataRest']
     sampling_freq = 256 # in Hertz
     extra_chans = [str(i) for i in range(4)]
-    info = mne.create_info(ch_names+extra_chans, sfreq=sampling_freq)
-    # info = 
+    info = mne.create_info(ch_names+extra_chans, sfreq=sampling_freq, 
+                           ch_types=['eeg']*len(ch_names+extra_chans))
     raw = mne.io.RawArray(mat, info)
     return raw
     

@@ -28,8 +28,8 @@ Directions for use of basic package pre-brainHack project:
 # Install Requirements
 
 ```
-mamba create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas
-# if mamba is not installed:  conda create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas
+mamba create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas conda-forge::jupyterlab
+# if mamba is not installed:  conda create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pandas conda-forge::jupyterlab
 ```
 
 # Additional Data for training

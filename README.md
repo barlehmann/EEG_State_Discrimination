@@ -36,3 +36,7 @@ mamba create -n eeg_state conda-forge::mne jupyter pip ipython scikit-learn pand
 10 sets of EEG - 2.5 mins of eyes open rest and 2.5 mins of eyes closed
 Can be used as a baseline for state based analysis datasets provided in this brainhack
 ```git clone https://github.com/mastaneht/SPIS-Resting-State-Dataset```
+
+# Running 
+conda activate eeg_state
+jupyter lab code/complete_project_code.ipynb

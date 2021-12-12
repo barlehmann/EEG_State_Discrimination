@@ -36,28 +36,48 @@ def return_raw_ica(fname):
     ica.fit(raw, picks=raw.info['ch_names'])
     return raw, ica
 
-def convert_to_common_ave_ref(fname):
-    '''Subtract the average of all channels from each'''
-    
-
-#Perform this in the data folder
-fname = 'BALE_QEEG_Ext.Tired_8.21 01.000.02 AGE 29  EC.edf'
-raw = mne.io.read_raw_edf(fname, preload=True)
-ch_picks = [i for i in raw.ch_names if i!='EEG A2-A1']
-raw.pick_channels(ch_picks)
-raw.notch_filter([60,120])
-raw_avg_ref = raw.copy().set_eeg_reference(ref_channels='average')
-raw_avg_ref.filter(1.0, None)
-raw_avg_ref.plot()
 
 
-# raw.annotations.description = ['bad_stuff']*len(raw.annotations)
-epochs = mne.make_fixed_length_epochs(raw_avg_ref, duration=10, reject_by_annotation=True)
-raw, ica = return_raw_ica(fname)
+# ica  = ICA()
+# ica.fit(epochs)
+# ica.plot_sources(raw)
+
+# from pactools.dar_model import DAR, extract_driver
+epochs_gs1 = mne.read_epochs('BALE_QEEG_GoodSleep-epo.fif', preload=True)
+epochs_gs2 = mne.read_epochs('BALE_QEEG_GoodSleep2-epo.fif', preload=True)
+epochs_t = mne.read_epochs('BALE_QEEG_Tired-epo.fif', preload=True)
+epochs_sd = mne.read_epochs('BALE_QEEG_SleepDepr-epo.fif', preload=True)
 
 
-ica.apply(raw, exclude=ica.exclude)
+import numpy as np
+from mne.connectivity import spectral_connectivity
+
+epochs = epochs_gs1
+
+def return_epoch_conn(epoch, info):
+    fmin, fmax = 4., 12.
+    sfreq = info['sfreq']  # the sampling frequency
+    tmin = 0.0 
+    con = spectral_connectivity(
+        epoch, method='coh', mode='multitaper', sfreq=sfreq, fmin=fmin, fmax=fmax,
+        faverage=True, tmin=tmin, mt_adaptive=False, n_jobs=7, fskip=4) 
+    return np.squeeze(con[0])
+
+def return_conn_mat(epochs):
+    tmp_ = []
+    for idx in range(len(epochs)):
+        # return_epoch_conn(epoch, epochs.info)
+        tmp_.append(return_epoch_conn(epochs[idx], epochs.info))
+    conn_mat = np.stack(tmp_)    
+    return conn_mat
+
+f_gs1=return_conn_mat(epochs_gs1)
+f_gs2=return_conn_mat(epochs_gs2)
+f_t=return_conn_mat(epochs_t)
+f_sd=return_conn_mat(epochs_sd)
 
 
-def return_coherence_
+
+
+
 

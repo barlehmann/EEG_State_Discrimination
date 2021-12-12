@@ -76,8 +76,20 @@ f_gs2=return_conn_mat(epochs_gs2)
 f_t=return_conn_mat(epochs_t)
 f_sd=return_conn_mat(epochs_sd)
 
+np.save('./f_gs1.npy', f_gs1)
+np.save('./f_gs2.npy', f_gs2)
+np.save('./f_t.npy', f_t)
+np.save('./f_sd.npy', f_sd)
 
-
-
+import pylab
+pylab.subplot(1,3,1)
+pylab.imshow(f_gs1.mean(axis=0))
+pylab.title('Rested')
+pylab.subplot(1,3,2)
+pylab.imshow(f_t.mean(axis=0))
+pylab.title('Tired')
+pylab.subplot(1,3,3)
+pylab.imshow(f_sd.mean(axis=0))
+pylab.title('Sleep Deprived')
 
 
